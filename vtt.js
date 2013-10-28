@@ -94,7 +94,7 @@
   // interprete each group as a key/value pair separated by 'keyValueDelim'.
   function parseOptions(input, callback, keyValueDelim, groupDelim) {
     var groups = groupDelim ? input.split(groupDelim) : [input];
-    for (var i in groups) {
+    for(i=0;i<groups.length;i++) {
       var kv = groups[i].split(keyValueDelim);
       if (kv.length !== 2)
         continue;
@@ -173,7 +173,7 @@
     consumeCueSettings(input, cue);
   }
 
-  const ESCAPE = {
+  var ESCAPE = {
     "&amp;": "&",
     "&lt;": "<",
     "&gt;": ">",
@@ -182,7 +182,7 @@
     "&nbsp;": "\u00a0"
   };
 
-  const TAG_NAME = {
+  var TAG_NAME = {
     c: "span",
     i: "i",
     b: "b",
@@ -193,12 +193,12 @@
     lang: "span"
   };
 
-  const TAG_ANNOTATION = {
+  var TAG_ANNOTATION = {
     v: "title",
     lang: "lang"
   };
 
-  const NEEDS_PARENT = {
+  var NEEDS_PARENT = {
     rt: "ruby"
   };
 
@@ -589,7 +589,7 @@
   BoundingBox.prototype.applyStyles = function(styles) {
     var div = this.div;
     Object.keys(styles).forEach(function(style) {
-      div.style[style] = styles[style];
+      $(div).css(style, styles[style]);
     });
   };
 
@@ -660,10 +660,10 @@
   BasicBoundingBox.prototype = Object.create(BoundingBox.prototype);
   BasicBoundingBox.prototype.constructor = BasicBoundingBox;
 
-  const CUE_FONT_SIZE = 2.5;
-  const SCROLL_DURATION = 0.433;
-  const LINE_HEIGHT = 0.0533;
-  const REGION_FONT_SIZE = 1.3;
+  var CUE_FONT_SIZE = 2.5;
+  var SCROLL_DURATION = 0.433;
+  var LINE_HEIGHT = 0.0533;
+  var REGION_FONT_SIZE = 1.3;
 
   function CueBoundingBox(window, cue) {
     BasicBoundingBox.call(this, window, cue);
